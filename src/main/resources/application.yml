@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  context-path: /data-integration
+
+spring:
+  # ˝æ›‘¥≈‰÷√
+  datasource:
+    url: jdbc:mysql://mysqlhost:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;autoReconnect=true
+    username: root
+    password: xxx
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 15000
+      validation-query: SELECT 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 0
+      pool-prepared-statements: true
+      max-open-prepared-statements: 100
+      filters: stat
+      WebStatFilter.exclusions: /druid/*
+      StatViewServlet:
+        loginUsername: druid
+        loginPassword: druid
+  redis:
+    host: redishost
+    port: 6379
+    password: xxx
+    pool:
+      maxActive: 200
+      maxIdle: 20
+      maxWait: 12000
+      testOnBorrow: true
+      testOnReturn: true
